@@ -31,6 +31,7 @@ import sys
 import requests
 import json
 import urllib3
+import time
 
 from urllib3.exceptions import InsecureRequestWarning  # for insecure https warnings
 from requests.auth import HTTPBasicAuth  # for Basic Auth
@@ -51,6 +52,15 @@ def pprint(json_data):
     print(json.dumps(json_data, indent=4, separators=(' , ', ' : ')))
 
 
+def get_epoch_current_time():
+    """
+    This function will return the epoch time for the current time
+    :return: epoch time including msec
+    """
+    epoch = time.time()*1000
+    return int(epoch)
+
+
 def get_dnac_jwt_token(dnac_auth):
     """
     Create the authorization token required to access DNA C
@@ -65,6 +75,8 @@ def get_dnac_jwt_token(dnac_auth):
     response_json = response.json()
     dnac_jwt_token = response_json['Token']
     return dnac_jwt_token
+
+
 
 
 def main(client_mac_address):
