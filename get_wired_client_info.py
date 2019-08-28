@@ -77,7 +77,17 @@ def get_dnac_jwt_token(dnac_auth):
     return dnac_jwt_token
 
 
-
+def get_client_info(mac_address, epoch_time, dnac_jwt_token):
+    """
+    This function will retrieve the client information for the client with the MAC address {mac_address}
+    :param mac_address: client MAC address
+    :return: client info
+    """
+    url = DNAC_URL + '/dna/intent/api/v1/client-detail?timestamp=' + str(epoch_time) + '&macAddress=' + mac_address
+    header = {'content-type': 'application/json', 'x-auth-token': dnac_jwt_token}
+    client_response = requests.get(url, headers=header, verify=False)
+    client_json = client_response.json()
+    return client_json
 
 def main(client_mac_address):
     """
@@ -91,10 +101,11 @@ def main(client_mac_address):
     dnac_token = get_dnac_jwt_token(DNAC_AUTH)
 
     # convert present time to epoch time
-
+    current_epoch_time = get_epoch_current_time()
 
     # check if client is present in the Cisco DNA Center inventory
-
+    client_info = get_client_info(client_mac_address, current_epoch_time, dnac_token)
+    pprint(client_info)
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1]))
