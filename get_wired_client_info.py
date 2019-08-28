@@ -105,7 +105,22 @@ def main(client_mac_address):
 
     # check if client is present in the Cisco DNA Center inventory
     client_info = get_client_info(client_mac_address, current_epoch_time, dnac_token)
+    print('\nThis is the output of the Client Detail API call')
     pprint(client_info)
+
+    client_ipv4_address = client_info['detail']['hostIpV4']
+    client_access_switch = client_info['detail']['clientConnection']
+    client_switch_interface = client_info['detail']['port']
+    client_access_vlan = client_info['detail']['vlanId']
+
+    print('\n\nInformation for the client:')
+    print('{0:20s}{1:30s}'.format('MAC Address: ', client_mac_address))
+    print('{0:20s}{1:30s}'.format('IPv4 Address: ', client_ipv4_address))
+    print('{0:20s}{1:30s}'.format('Access Switch: ', client_access_switch))
+    print('{0:20s}{1:30s}'.format('Switchport: ', client_switch_interface))
+    print('{0:20s}{1:30s}'.format('Access VLAN:', str(client_access_vlan)))
+
+    print('\n\nEnd of Application "get_wired_client_info.py" Run')
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1]))
