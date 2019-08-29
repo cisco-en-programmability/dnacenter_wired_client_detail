@@ -112,13 +112,26 @@ def main(client_mac_address):
     client_access_switch = client_info['detail']['clientConnection']
     client_switch_interface = client_info['detail']['port']
     client_access_vlan = client_info['detail']['vlanId']
+    client_switchport_state = client_info['topology']['links'][0]['linkStatus']
 
+    # find the overall client healthscore
+    client_health_info = client_info['detail']['healthScore']
+    for health in client_health_info:
+        if health['healthType'] == 'OVERALL':
+            client_health_score = health['score']
+            break
+        else:
+            client_health_score = 'UNKNOWN'
+
+    # print all the information
     print('\n\nInformation for the client:')
-    print('{0:20s}{1:30s}'.format('MAC Address: ', client_mac_address))
-    print('{0:20s}{1:30s}'.format('IPv4 Address: ', client_ipv4_address))
-    print('{0:20s}{1:30s}'.format('Access Switch: ', client_access_switch))
-    print('{0:20s}{1:30s}'.format('Switchport: ', client_switch_interface))
-    print('{0:20s}{1:30s}'.format('Access VLAN:', str(client_access_vlan)))
+    print('{0:30s}{1:30s}'.format('MAC Address: ', client_mac_address))
+    print('{0:30s}{1:30s}'.format('IPv4 Address: ', client_ipv4_address))
+    print('{0:30s}{1:30s}'.format('Access Switch: ', client_access_switch))
+    print('{0:30s}{1:30s}'.format('Switchport: ', client_switch_interface))
+    print('{0:30s}{1:30s}'.format('Access VLAN: ', str(client_access_vlan)))
+    print('{0:30s}{1:30s}'.format('Switchport State:', client_switchport_state))
+    print('{0:30s}{1:30s}'.format('Client Overall Healthscore: ', str(client_health_score)))
 
     print('\n\nEnd of Application "get_wired_client_info.py" Run')
 
