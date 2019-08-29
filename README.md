@@ -16,7 +16,7 @@ This information is collected at the time the script is executed
 
 - $ python get_wired_client_info.py MAC_address
 
-This script will use the Cisco DNA Center APIs to retrive information regarding wired clients.
+This script will use the Cisco DNA Center APIs to retrieve information regarding wired clients.
 
 Sample output:
 

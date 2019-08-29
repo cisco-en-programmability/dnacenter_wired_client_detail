@@ -65,7 +65,7 @@ def get_dnac_jwt_token(dnac_auth):
     """
     Create the authorization token required to access DNA C
     Call to Cisco DNA C - /api/system/v1/auth/login
-    :param dnac_auth - DNA C Basic Auth string
+    :param dnac_auth: DNA C Basic Auth string
     :return Cisco DNA C Auth Token
     """
 
@@ -81,6 +81,8 @@ def get_client_info(mac_address, epoch_time, dnac_jwt_token):
     """
     This function will retrieve the client information for the client with the MAC address {mac_address}
     :param mac_address: client MAC address
+    :param epoch_time: epoch time
+    :param dnac_jwt_token: Cisco DNA C Auth Token
     :return: client info
     """
     url = DNAC_URL + '/dna/intent/api/v1/client-detail?timestamp=' + str(epoch_time) + '&macAddress=' + mac_address
@@ -88,6 +90,7 @@ def get_client_info(mac_address, epoch_time, dnac_jwt_token):
     client_response = requests.get(url, headers=header, verify=False)
     client_json = client_response.json()
     return client_json
+
 
 def main(client_mac_address):
     """
@@ -114,7 +117,7 @@ def main(client_mac_address):
     client_access_vlan = client_info['detail']['vlanId']
     client_switchport_state = client_info['topology']['links'][0]['linkStatus']
 
-    # find the overall client healthscore
+    # find the overall client Healthscore
     client_health_info = client_info['detail']['healthScore']
     for health in client_health_info:
         if health['healthType'] == 'OVERALL':
@@ -134,6 +137,7 @@ def main(client_mac_address):
     print('{0:30s}{1:30s}'.format('Client Overall Healthscore: ', str(client_health_score)))
 
     print('\n\nEnd of Application "get_wired_client_info.py" Run')
+
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1]))
