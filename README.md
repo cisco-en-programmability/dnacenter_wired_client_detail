@@ -18,7 +18,7 @@ This information is collected at the time the script is executed
 
 This script will use the Cisco DNA Center APIs to retrieve information regarding wired clients.
 
-Sample output:
+- Sample output:
 
 Information for the client:
 MAC Address:                  00:0C:29:CC:F0:62             
@@ -34,5 +34,4 @@ This script may be changed to retrieve the information at a timestamp during the
 
 **License**
 
-This project is licensed to you under the terms of the [Cisco Sample
-Code License](./LICENSE).
+This project is licensed to you under the terms of the [Cisco Sample Code License](./LICENSE).

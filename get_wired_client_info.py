@@ -63,10 +63,10 @@ def get_epoch_current_time():
 
 def get_dnac_jwt_token(dnac_auth):
     """
-    Create the authorization token required to access DNA C
-    Call to Cisco DNA C - /api/system/v1/auth/login
-    :param dnac_auth: DNA C Basic Auth string
-    :return Cisco DNA C Auth Token
+    Create the authorization token required to access Cisco DNA Center
+    Call to Cisco DNA Center - /api/system/v1/auth/login
+    :param dnac_auth: Cisco DNA Center Basic Auth string
+    :return Cisco DNA Center Auth Token
     """
 
     url = DNAC_URL + '/dna/system/api/v1/auth/token'
@@ -82,7 +82,7 @@ def get_client_info(mac_address, epoch_time, dnac_jwt_token):
     This function will retrieve the client information for the client with the MAC address {mac_address}
     :param mac_address: client MAC address
     :param epoch_time: epoch time
-    :param dnac_jwt_token: Cisco DNA C Auth Token
+    :param dnac_jwt_token: Cisco DNA Center Auth Token
     :return: client info
     """
     url = DNAC_URL + '/dna/intent/api/v1/client-detail?timestamp=' + str(epoch_time) + '&macAddress=' + mac_address
@@ -100,7 +100,7 @@ def main(client_mac_address):
     :return: None
     """
 
-    # obtain the Cisco DNA C Auth Token
+    # obtain the Cisco DNA Center Auth Token
     dnac_token = get_dnac_jwt_token(DNAC_AUTH)
 
     # convert present time to epoch time
