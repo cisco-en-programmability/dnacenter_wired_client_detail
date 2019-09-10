@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 
-Cisco DNA Center Get Auth Token
+Cisco DNA Center Client Information using the MAC Address
 
 Copyright (c) 2019 Cisco and/or its affiliates.
 
@@ -68,7 +68,6 @@ def get_dnac_jwt_token(dnac_auth):
     :param dnac_auth: Cisco DNA Center Basic Auth string
     :return Cisco DNA Center Auth Token
     """
-
     url = DNAC_URL + '/dna/system/api/v1/auth/token'
     header = {'content-type': 'application/json'}
     response = requests.post(url, auth=dnac_auth, headers=header, verify=False)
@@ -79,7 +78,8 @@ def get_dnac_jwt_token(dnac_auth):
 
 def get_client_info(mac_address, epoch_time, dnac_jwt_token):
     """
-    This function will retrieve the client information for the client with the MAC address {mac_address}
+    This function will retrieve the client information for the client with the MAC address {mac_address},
+    at the time specified by the {epoch_time}
     :param mac_address: client MAC address
     :param epoch_time: epoch time
     :param dnac_jwt_token: Cisco DNA Center Auth Token

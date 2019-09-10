@@ -1,4 +1,4 @@
-# Cisco DNA Center Wired Client Detail
+# Cisco DNA Center Client Information using the MAC Address
 
 
 This Python script will retrieve information about a wired client using the Cisco DNA Center APIs.
@@ -16,8 +16,6 @@ This information is collected at the time the script is executed
 
 - $ python get_wired_client_info.py MAC_address
 
-This script will use the Cisco DNA Center APIs to retrieve information regarding wired clients.
-
 - Sample output:
 
 Information for the client:
@@ -30,7 +28,7 @@ Switchport State:             UP
 Client Overall Healthscore:   10                            
 
 
-This script may be changed to retrieve the information at a timestamp during the prior 7 days, or to add additional information about the client, as needed.
+This script may be changed to retrieve the information at a timestamp during the prior 7 days, or to provide additional information about the client, as needed.
 
 **License**
 
