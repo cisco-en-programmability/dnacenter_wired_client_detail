@@ -136,7 +136,7 @@ def main(client_mac_address):
     print('{0:30s}{1:30s}'.format('Switchport State:', client_switchport_state))
     print('{0:30s}{1:30s}'.format('Client Overall Healthscore: ', str(client_health_score)))
 
-    print('\n\nEnd of Application "get_wired_client_info.py" Run')
+    print('\n\nEnd of Application "get_wired_client_info.py" Run\n\n')
 
 
 if __name__ == "__main__":
